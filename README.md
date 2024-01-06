@@ -10,11 +10,11 @@ The extension is not currently published and is undergoing development before th
 
 1. Clone the Repo with `git clone`
 
-2. Install Project Dependencies with `npm install`
+2. Navigate to the `./extension` folder and install project dependencies with `npm install`
 
-3. Build The Extension with `npm start`. This should generate a "dist" folder.
+3. Build the extension with `npm start`. This should generate a "dist" folder.
 
-4. Copy and Paste the `chrome://extensions/` URL on your Google Chrome search bar.
+4. Copy and paste the `chrome://extensions/` URL on your Google Chrome search bar.
 
 5. Click the "Load Unpacked" button on the top left of your screen.
 
