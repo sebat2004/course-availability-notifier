@@ -1,0 +1,11 @@
+{
+    "appName": {
+        "message": "osu-waitlist-reminder"
+    },
+    "appShortName": {
+        "message": "osu-waitlist-reminder"
+    },
+    "appDescription": {
+        "message": "This extension allows the OSU students to get email notifications for openings in courses with no waitlists!"
+    }
+}
