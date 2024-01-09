@@ -1,0 +1,19 @@
+{
+  "name": "course-availability-notifier-server",
+  "version": "1.0.0",
+  "description": "Express.js server for the course-availability-notifier ap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebat2004/course-availability-notifier.git"
+  },
+  "author": "Sebastian Torresola",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebat2004/course-availability-notifier/issues"
+  },
+  "homepage": "https://github.com/sebat2004/course-availability-notifier#readme"
+}
