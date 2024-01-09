@@ -1,12 +1,12 @@
 {
     "name": "osu-waitlist-reminder",
     "description": "This extension allows the OSU students to get email notifications for openings in courses with no waitlists!",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "homepage": "http://chrome.google.com/webstore",
     "author": "Sebastian Torresola",
     "repository": {
         "type": "git",
-        "url": "ENTER GIT REPO URL"
+        "url": "https://github.com/sebat2004/course-availability-notifier"
     },
     "scripts": {
         "start": "xt-build -e dev -w",
@@ -28,7 +28,7 @@
         "test/**/*"
     ],
     "devDependencies": {
-        "extension-cli": "latest"
+        "extension-cli": "^1.2.2"
     },
     "xtdocs": {
         "source": {
@@ -41,9 +41,10 @@
     "xtbuild": {
         "js_bundles": [
             {
-                "name": "notifier",
-                "src": "./src/notifier.js"
+                "name": "index",
+                "src": "./src/index.js"
             }
-        ]
+        ],
+        "css_bundles": []
     }
 }

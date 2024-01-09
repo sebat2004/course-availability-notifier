@@ -15,9 +15,10 @@
     "content_scripts": [
         {
             "matches": ["https://classes.oregonstate.edu/*"],
-            "js": ["notifier.js"]
+            "js": ["index.js"]
         }
     ],
+    "web_accessible_resources": [],
     "action": {
         "default_icon": {
             "16": "assets/img/16x16.png",
