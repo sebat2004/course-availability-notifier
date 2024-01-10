@@ -4,7 +4,8 @@
   "description": "Express.js server for the course-availability-notifier ap",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/sebat2004/course-availability-notifier/issues"
   },
-  "homepage": "https://github.com/sebat2004/course-availability-notifier#readme"
+  "homepage": "https://github.com/sebat2004/course-availability-notifier#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2",
+    "pg-promise": "^11.5.4"
+  }
 }
