@@ -34,6 +34,33 @@ const createWaitlistButton = () => {
     return button;
 }
 
-const sendWaitlistRequest = (courseRow) => {
-    console.log("Updated user's waitlist preferences.")
+const sendWaitlistRequest = (event) => {
+    // Send request to server to add course to waitlist
+    const courseRow = event.target.parentNode;
+    const courseInfo = getCourseInfo(courseRow);
+
+    fetch('http://localhost:3000/api/waitlists', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(courseInfo)
+    })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+const getCourseInfo = (courseRow) => {
+    const courseInfo = {
+        crn: courseRow.childNodes[0].childNodes[2].textContent.trim(),
+        srcdb: courseRow.getAttribute('data-srcdb'),
+        group: courseRow.getAttribute('data-group'),
+        matched: courseRow.getAttribute('data-matched'),
+        requestor: "seba" // TODO: Force user to login and get username from chrome.storage
+    }
+    return courseInfo;
 }

@@ -1,21 +1,10 @@
 import { insertButtons  } from "./utils";
 
-// IMPORTANT: How OSU calls course API (found on line 8218 of source code)
-
-// Example request: 
-//  $.ajax({
-//     url: apiURL,
-//     type: 'POST',
-//     processData: false,
-//     contentType: 'application/json',
-//     data: encodeURIComponent(JSON.stringify(postData)),
-//     dataType: 'json'
-//  });
+// IMPORTANT: How OSU calls course API is found on line 8218 of source code (fose.js file)
 
 // apiURL is always https://classes.oregonstate.edu/api/?page=fose&route=search&keyword=cs
 // postData is always { group: group, key: key, srcdb: srcdb, matched: matched }
 // group, key, srcdb, and matched are all contained in data attributes on the clickable HTML element.
-
 
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 

@@ -45,6 +45,12 @@
                 "src": "./src/index.js"
             }
         ],
-        "css_bundles": []
+        "css_bundles": [],
+        "html_bundles": [
+            {
+                "name": "popup",
+                "src": "./src/popup.html"
+            }
+        ]
     }
 }
