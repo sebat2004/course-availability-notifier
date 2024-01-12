@@ -13,6 +13,7 @@ const db = pgp(connection)
 // This will be where the Lambda function code for the scheduled CRON jobs will go
 exports.handler = async (event) => {
     console.log('Running CRON job')
+
     const nodemailer = require("nodemailer");
     const transporter = nodemailer.createTransport({
         service: "gmail",
@@ -47,7 +48,7 @@ exports.handler = async (event) => {
     }
 
     const getCourseInfo = async (waitlist) => {
-        // Array of async functions to wait for, preventing Lambda from exiting early
+        // Array of async functions to wait for, preventing AWS Lambda invocation from exiting early
         let asyncs = []
 
         // Format data for request
@@ -59,7 +60,7 @@ exports.handler = async (event) => {
         }
         const apiURL = 'https://classes.oregonstate.edu/api/?page=fose&route=details'
         
-        // Make request to course page
+        // Get course availability information
         const courseData = await fetch(apiURL, {
             method: 'POST',
             processData: false,
@@ -70,11 +71,15 @@ exports.handler = async (event) => {
         .then(response => response.json())
         console.log("Course Requested:", courseData.code);
 
-        const reciever = await getUserEmail(waitlist)
-        asyncs.push(reciever)
-
+        // Send email if spot is available
         if (courseData.max_enroll !== courseData.enrollment) {
             console.log(`Spot available for ${courseData.code}!`)
+            
+            // Get email of waitlist.requestor
+            const reciever = await getUserEmail(waitlist)
+            asyncs.push(reciever)
+
+            
             // Send email to waitlist.requestor
             const mailOptions = {
                 from: {
@@ -87,10 +92,20 @@ exports.handler = async (event) => {
                 html: `<b>Beep boop! It looks like the course ${courseData.code} has an available spot for you!</b>`, // html body
             };
             asyncs.push(sendMail(transporter, mailOptions))
+
+            // Delete waitlist from database
+            asyncs.push(db.one('DELETE FROM waitlists WHERE id = $1', waitlist.id)
+                .then(data => {
+                    console.log('DATA:', data.id)
+                })
+                .catch(error => {
+                    console.log('ERROR:', error)
+                })
+            );
         }
 
         await Promise.all(asyncs)
-        return 'Done'
+        return;
     }
 
     let waitlists = []
@@ -103,11 +118,11 @@ exports.handler = async (event) => {
         })
         .catch(error => {
             return error
-        })
+        });
     
-    await Promise.all(waitlists)
+    await Promise.all(waitlists);
     
-    return { statusCode: 200 }
+    return;
 }
 
 
